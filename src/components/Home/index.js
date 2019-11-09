@@ -7,13 +7,6 @@ import FourColGrid from '../elements/FourColGrid';
 import MovieThumb from '../elements/MovieThumb';
 import LoadMoreBtn from '../elements/LoadMoreBtn';
 import Spinner from '../elements/Spinner';
-import {
-  API_KEY,
-  API_URL,
-  IMAGE_BASE_URL,
-  POSTER_SIZE,
-  BACKDROP_SIZE,
-} from '../../config';
 import './Home.css';
 
 class Home extends React.Component {
@@ -32,7 +25,7 @@ class Home extends React.Component {
       this.setState({ ...state });
     } else {
       this.setState({ loading: true });
-      const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+      const endpoint = `${process.env.REACT_APP_API_URL}movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
       this.fetchItems(endpoint);
     }
   }
@@ -66,9 +59,9 @@ class Home extends React.Component {
     });
 
     if (searchTerm === '') {
-      endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+      endpoint = `${process.env.REACT_APP_API_URL}movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
     } else {
-      endpoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
+      endpoint = `${process.env.REACT_APP_API_URL}search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${searchTerm}`;
     }
     this.fetchItems(endpoint);
   };
@@ -79,11 +72,13 @@ class Home extends React.Component {
 
     this.setState({ loading: true });
     if (searchTerm === '') {
-      endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${currentPage +
-        1}`;
+      endpoint = `${process.env.REACT_APP_API_URL}movie/popular?api_key=${
+        process.env.REACT_APP_API_KEY
+      }&language=en-US&page=${currentPage + 1}`;
     } else {
-      endpoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}&page=${currentPage +
-        1}`;
+      endpoint = `${process.env.REACT_APP_API_URL}search/movie?api_key=${
+        process.env.REACT_APP_API_KEY
+      }&language=en-US&query=${searchTerm}&page=${currentPage + 1}`;
     }
 
     this.fetchItems(endpoint);
@@ -103,7 +98,7 @@ class Home extends React.Component {
       <div className='rmdb-home'>
         {heroImage ? (
           <HeroImage
-            image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
+            image={`${process.env.REACT_APP_IMAGE_BASE_URL}${process.env.REACT_APP_BACKDROP_SIZE}${heroImage.backdrop_path}`}
             title={heroImage.original_title}
           >
             {heroImage.overview}
@@ -121,7 +116,7 @@ class Home extends React.Component {
                 clickable={true}
                 image={
                   movie.poster_path
-                    ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                    ? `${process.env.REACT_APP_IMAGE_BASE_URL}${process.env.REACT_APP_POSTER_SIZE}${movie.poster_path}`
                     : './images/no_image.jpg'
                 }
                 movieId={movie.id}

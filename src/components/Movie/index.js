@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-import { API_KEY, API_URL } from '../../config';
 import Navigation from '../elements/Navigation';
 import MovieInfo from '../elements/MovieInfo';
 import MovieInfoBar from '../elements/MovieInfoBar';
@@ -25,7 +24,7 @@ class Movie extends React.Component {
       this.setState({ ...state });
     } else {
       this.setState({ loading: true });
-      const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
+      const endpoint = `${process.env.REACT_APP_API_URL}movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`;
       this.fetchData(endpoint);
     }
   }
@@ -40,7 +39,7 @@ class Movie extends React.Component {
           this.setState({ loading: false });
         } else {
           this.setState({ movie: data }, async () => {
-            let endpointData = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
+            let endpointData = `${process.env.REACT_APP_API_URL}movie/${movieId}/credits?api_key=${process.env.REACT_APP_API_KEY}`;
             await axios
               .get(endpointData)
               .then(res => res.data)

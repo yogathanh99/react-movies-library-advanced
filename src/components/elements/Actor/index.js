@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { IMAGE_BASE_URL } from '../../../config';
 import './Actor.css';
 
 const Actor = ({ actor }) => {
@@ -12,7 +11,7 @@ const Actor = ({ actor }) => {
       <img
         src={
           actor.profile_path
-            ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
+            ? `${process.env.REACT_APP_IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
             : './images/no_image.jpg'
         }
         alt='actorthumb'

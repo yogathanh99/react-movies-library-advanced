@@ -33,9 +33,9 @@ const MovieInfoBar = ({ time, budget, revenue }) => {
 };
 
 MovieInfoBar.propTypes = {
-  time: PropTypes.number.isRequired,
-  budget: PropTypes.number.isRequired,
-  revenue: PropTypes.number.isRequired,
+  time: PropTypes.number,
+  budget: PropTypes.number,
+  revenue: PropTypes.number,
 };
 
 export default MovieInfoBar;

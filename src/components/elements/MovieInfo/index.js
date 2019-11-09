@@ -2,7 +2,6 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
 
-import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../../../config';
 import MovieThumb from '../MovieThumb';
 import './MovieInfo.css';
 
@@ -12,7 +11,7 @@ const MovieInfo = ({ movie, directors }) => {
       className='rmdb-movieinfo'
       style={{
         background: movie.backdrop_path
-          ? `url('${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}')`
+          ? `url('${process.env.REACT_APP_IMAGE_BASE_URL}${process.env.REACT_APP_BACKDROP_SIZE}${movie.backdrop_path}')`
           : '#000',
       }}
     >
@@ -21,7 +20,7 @@ const MovieInfo = ({ movie, directors }) => {
           <MovieThumb
             image={
               movie.poster_path
-                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                ? `${process.env.REACT_APP_IMAGE_BASE_URL}${process.env.REACT_APP_POSTER_SIZE}${movie.poster_path}`
                 : './images/no_image.jpg'
             }
             clickable={false}
